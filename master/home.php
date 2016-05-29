@@ -99,16 +99,43 @@
                   <td><?php echo $row['IP']; ?></td>
                   <td><?php echo $row['OS']; ?></td>
                   <td><?php echo $row['Status']; ?></td>
-                  <td><a href="start.php?ID=<?php echo $row['ID']; ?>"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></a> <a href="stop.php?ID=<?php echo $row['ID']; ?>"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a> <a href="restart.php?ID=<?php echo $row['ID']; ?>"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a><a href="view.php?ID=<?php echo $row['ID']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+                  <td>
+                  <form id = "form" name = "form" action="sql/global/api.php" method = "POST">
+                    <a href="start.php?ID=<?php echo $row['ID']; ?>"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></a> 
+                  </form>
+                  <form id = "form" name = "form" action="sql/global/api.php" method = "POST">
+                    <a href="stop.php?ID=<?php echo $row['ID']; ?>"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a> 
+                  </form>
+                  <form id = "form" name = "form" action="sql/global/api.php" method = "POST">
+                      <button type="image" class="glyphicon glyphicon-refresh" aria-hidden="true"></input>
+                  </form>
+                  <!-- Edit Page-->
+                  <a href="view.php?ID=<?php echo $row['ID']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
                 </tr>
               <?php }?>
               </tbody>
+
             </table>
           </div>
         </div>
       </div>
     </div>
+    <!-- Using Javascript to post page without leaving it-->
+    <script type="text/javascript">
+    var frm = $('#form');
+    frm.submit(function (ev) {
+        $.ajax({
+        type: frm.attr('method'),
+        url: frm.attr('action'),
+        data: frm.serialize(),
+        success: function (data) {
+            alert('ok');
+        }
+    });
 
+    ev.preventDefault();
+});
+</script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

@@ -37,6 +37,11 @@
 
       <form class="form-signin" method="POST" action="sql/check/login.php">
         <h2 class="form-signin-heading">Panel™</h2>
+          <?php 
+            if($_GET['error'] == 1) {
+              echo "<p style=\"color:red\";\"\">Authentication Failed!</p>";
+            }
+          ?>
         <label for="inputEmail" class="sr-only">Username</label>
         <input type="username" id="username" class="form-control" name="username" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
