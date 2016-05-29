@@ -55,13 +55,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`ID`, `Username`, `Password`) VALUES
-(1, 'Repko', 'mathew123');
-
 -- --------------------------------------------------------
 
 --
