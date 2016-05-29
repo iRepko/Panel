@@ -83,12 +83,6 @@ CREATE TABLE IF NOT EXISTS `virtuals` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
---
--- Dumping data for table `virtuals`
---
-
-INSERT INTO `virtuals` (`ID`, `OwnerID`, `Hostname`, `IP`, `Hard Drive`, `Memory`, `Swap`, `Status`, `OS`, `vID`, `sID`) VALUES
-(1, 1, 'repkonet', '0.0.0.0', '', '', '', 'Online', 'CentOS', 9, 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
