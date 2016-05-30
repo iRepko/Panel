@@ -1,5 +1,14 @@
 <!DOCTYPE html>
-<?php require('sql/global/header.php'); ?>
+<?php 
+  require('sql/global/header.php'); 
+  if(!isset($_SESSION['user'])) {
+    header("Location: index.php");
+  }
+  if(!isset($_SESSION['authcode'])) { 
+    header("Location: index.php");
+  }
+?>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -95,22 +104,37 @@
               <tbody>
               <?php while($row = mysqli_fetch_array($query)) { ?>
                 <tr>
-                  <td><?php echo $row['Hostname']; ?></td>
-                  <td><?php echo $row['IP']; ?></td>
-                  <td><?php echo $row['OS']; ?></td>
-                  <td><?php echo $row['Status']; ?></td>
+                  <td><?php echo "<h3>".$row['Hostname']."</h3>"; ?></td>
+                  <td><?php echo "<h3>".$row['IP']."</h3>"; ?></td>
+                  <td><?php echo "<h3>".$row['OS']."</h3>"; ?></td>
                   <td>
-                  <form id = "form" name = "form" action="sql/global/api.php" method = "POST">
-                    <a href="start.php?ID=<?php echo $row['ID']; ?>"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></a> 
+                  <?php 
+                    //if($row['Status'] = 'Online') {
+                      //echo "<p style=\"color:green\";\"\"><h3>Online</h3></p>"; 
+                    //} elseif($row['Status'] = 'Offline') {
+                      //echo "<img src="""; 
+                    //}
+
+                  ?>
+                  </td>
+                  <td>
+                  <!-- Start Button-->
+                  <form id = "form" name = "form" action="sql/global/api.php?Command=start&ID=<?php echo $row['ID']; ?>" method = "POST">
+                    <button class="glyphicon glyphicon-repeat" aria-hidden="true"></button>
                   </form>
-                  <form id = "form" name = "form" action="sql/global/api.php" method = "POST">
-                    <a href="stop.php?ID=<?php echo $row['ID']; ?>"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a> 
+                  <!-- Stop Button-->
+                  <form id = "form" name = "form" action="sql/global/api.php?Command=stop&ID=<?php echo $row['ID']; ?>" method = "POST">
+                    <button class="glyphicon glyphicon-off" aria-hidden="true"></button>
                   </form>
-                  <form id = "form" name = "form" action="sql/global/api.php" method = "POST">
-                      <button type="image" class="glyphicon glyphicon-refresh" aria-hidden="true"></input>
+                  <!-- Restart Button-->
+                  <form id = "form" name = "form" action="sql/global/api.php?Command=restart&ID=<?php echo $row['ID']; ?>" method = "POST">
+                      <button type="image" class="glyphicon glyphicon-refresh" aria-hidden="true"></button>
                   </form>
-                  <!-- Edit Page-->
-                  <a href="view.php?ID=<?php echo $row['ID']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+                  <!-- Edit Button-->
+                  <form id = "form" name = "form" action="view.php?ID=<?php echo $row['ID']; ?>" method = "POST">
+                    <button class="glyphicon glyphicon-pencil" aria-hidden="true"></button>
+                  <form id = "form" name = "form" action="sql/global/api.php" method = "POST">
+                  </td>
                 </tr>
               <?php }?>
               </tbody>

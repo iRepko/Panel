@@ -1,6 +1,14 @@
 <!DOCTYPE html>
-<?php require('sql/global/header.php'); ?>
-<?php $VID = $_GET['ID']; ?>
+<?php 
+  require('sql/global/header.php');
+  if(!isset($_SESSION['user_id'])){ 
+    header("Location: index.php");
+  }
+  if(!isset($_SESSION['authcode'])){ 
+    header("Location: auth.php");
+  }
+  $VID = $_GET['ID'];
+?>
 <html lang="en">
   <head>
     <meta charset="utf-8">

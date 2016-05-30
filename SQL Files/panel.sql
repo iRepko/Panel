@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 29, 2016 at 01:25 AM
+-- Generation Time: May 29, 2016 at 06:16 PM
 -- Server version: 5.1.73
 -- PHP Version: 5.3.3
 
@@ -19,6 +19,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `panel`
 --
+CREATE DATABASE IF NOT EXISTS `panel` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `panel`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Info`
+--
+
+CREATE TABLE IF NOT EXISTS `Info` (
+  `Name` varchar(1024) NOT NULL,
+  `Email` varchar(1024) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -32,15 +45,9 @@ CREATE TABLE IF NOT EXISTS `Servers` (
   `Virtualization` int(16) NOT NULL,
   `KEY1` varchar(256) NOT NULL,
   `KEY2` varchar(256) NOT NULL,
+  `Port` int(11) NOT NULL DEFAULT '25003',
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `Servers`
---
-
-INSERT INTO `Servers` (`ID`, `IP`, `Virtualization`, `KEY1`, `KEY2`) VALUES
-(1, '', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -52,6 +59,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(64) NOT NULL,
   `Password` varchar(2056) NOT NULL,
+  `Key` varchar(256) NOT NULL,
+  `Email` varchar(1024) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
@@ -75,7 +84,6 @@ CREATE TABLE IF NOT EXISTS `virtuals` (
   `sID` int(16) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
